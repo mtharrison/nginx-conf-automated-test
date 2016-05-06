@@ -1,0 +1,17 @@
+{
+  "name": "nginx-conf-automated-test",
+  "version": "1.0.0",
+  "description": "Automated nginx config test using docker",
+  "main": "index.js",
+  "scripts": {
+    "test": "lab -L"
+  },
+  "keywords": [],
+  "author": "Matt Harrison",
+  "license": "BDS-3-Clause",
+  "devDependencies": {
+    "code": "2.x.x",
+    "lab": "10.x.x",
+    "wreck": "7.x.x"
+  }
+}
