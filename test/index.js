@@ -48,11 +48,7 @@ describe('nginx conf', () => {
 
     it('works with good config', (done) => {
 
-        setup('nginx-good.conf', (err, cleanup) => {
-
-            if (err) {
-                throw err;
-            }
+        setup('nginx-good.conf', () => {
 
             Wreck.get(`http://${dockerHost}:${port}/`, (err, res, payload) => {
 
@@ -69,11 +65,7 @@ describe('nginx conf', () => {
 
     it('works with bad config', (done) => {
 
-        setup('nginx-bad.conf', (err, cleanup) => {
-
-            if (err) {
-                throw err;
-            }
+        setup('nginx-bad.conf', () => {
 
             Wreck.get(`http://${dockerHost}:${port}/`, (err, res, payload) => {
 
