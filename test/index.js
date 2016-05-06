@@ -9,11 +9,6 @@ const Path = require('path');
 const Wreck = require('wreck');
 
 
-// Declare internals
-
-const internals = {};
-
-
 // Test shortcuts
 
 const lab = exports.lab = Lab.script();
@@ -52,7 +47,7 @@ afterEach((done) => {
 
 describe('nginx conf', () => {
 
-    // This test will pass 
+    // This test will pass
 
     it('works with good config', (done) => {
 
