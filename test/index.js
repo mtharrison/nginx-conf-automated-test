@@ -34,8 +34,14 @@ let proc;
 const setup = function (configFile, callback) {
 
     const basedir = Path.join(__dirname, '..');
-    proc = ChildProcess.spawn('docker', ['run', '-v', `${basedir}/public:/var/www`, '-v', `${basedir}/${configFile}:/etc/nginx/nginx.conf`, '-p', `${port}:${port}`, 'nginx']);
-    setTimeout(callback, 1000);
+    proc = ChildProcess.spawn('docker', [
+        'run',
+        '-v', `${basedir}/public:/var/www`,                         // static file dir
+        '-v', `${basedir}/${configFile}:/etc/nginx/nginx.conf`,     // map the config volume
+        '-p', `${port}:80`,                                         // bind outside port to 80 in container
+        'nginx']);
+
+    setTimeout(callback, 1000);                                         // wait a sec for proc to start
 };
 
 afterEach((done) => {
