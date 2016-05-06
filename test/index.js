@@ -52,6 +52,8 @@ afterEach((done) => {
 
 describe('nginx conf', () => {
 
+    // This test will pass 
+
     it('works with good config', (done) => {
 
         setup('nginx-good.conf', () => {
@@ -68,6 +70,8 @@ describe('nginx conf', () => {
             });
         });
     });
+
+    // This test will fail
 
     it('works with bad config', (done) => {
 
