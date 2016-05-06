@@ -36,6 +36,10 @@ const setup = function (configFile, callback) {
         '-p', `${port}:80`,                                         // bind outside port to 80 in container
         'nginx']);
 
+    // Check exit code is always 0 - non-zero could indicate invalid config
+
+    proc.on('exit', (code) => expect(code, 'Docker exit code').to.equal(0));
+
     setTimeout(callback, 1000);                                         // wait a sec for proc to start
 };
 
@@ -73,6 +77,25 @@ describe('nginx conf', () => {
     it('works with bad config', (done) => {
 
         setup('nginx-bad.conf', () => {
+
+            Wreck.get(`http://${dockerHost}:${port}/`, (err, res, payload) => {
+
+                if (err) {
+                    throw err;
+                }
+
+                expect(res.headers['x-dessert-header']).to.equal('frozen yogurt');
+                expect(payload.toString()).to.equal('Hello world!\n');
+                done();
+            });
+        });
+    });
+
+    // This test will fail hard (invalid config syntax)
+
+    it('works with invalid config', (done) => {
+
+        setup('nginx-invalid.conf', () => {
 
             Wreck.get(`http://${dockerHost}:${port}/`, (err, res, payload) => {
 

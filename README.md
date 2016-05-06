@@ -9,4 +9,4 @@
 
 Expected output:
 
-![output](https://cldup.com/YJKZIuTvy5.png)
+![output](https://cldup.com/VxpeiljLlg.png)
