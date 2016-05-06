@@ -23,8 +23,8 @@ const port = '4321';                     // pick a free port
 let proc;
 
 
-// Starts a nginx container running with my config
-// calls-back when ready
+// Starts a nginx container running with given config
+// calls-back when Docker process is started and ready
 
 const setup = function (configFile, callback) {
 
@@ -38,6 +38,8 @@ const setup = function (configFile, callback) {
 
     setTimeout(callback, 1000);                                         // wait a sec for proc to start
 };
+
+// After each test, kill the Docker process to free the port
 
 afterEach((done) => {
 
